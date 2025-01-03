@@ -1,5 +1,6 @@
 package com.usuario.interfaz.usuariointerfaz;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,5 +40,9 @@ public class MainMenuController {
         Scene scene = new Scene(fxmlLoader.load(), 420, 206);
         dialog.setScene(scene);
         dialog.show();
+    }
+
+    public void cerrarApp(MouseEvent mouseEvent) {
+        Platform.exit();
     }
 }
