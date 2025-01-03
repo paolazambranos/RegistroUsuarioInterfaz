@@ -1,14 +1,12 @@
 package com.usuario.interfaz.usuariointerfaz;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -35,17 +33,33 @@ public class MainMenuController {
         System.out.println("Eliminar usuario click");
     }
 
+    /**
+     * Este evento mostrara un dialogo que informa
+     * al usuario que los datos han sido guardados y se despide
+     * @param mouseEvent
+     * @throws IOException
+     */
     public void salirUsuario(MouseEvent mouseEvent) throws IOException {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("popup-cerrar.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 420, 206);
-        dialog.setScene(scene);
+        final Stage dialog = crearDialogCerrar();
         dialog.show();
-        dialog.setOnCloseRequest(windowEvent -> Platform.exit());
     }
 
     public void cerrarApp(MouseEvent mouseEvent) {
         Platform.exit();
+    }
+
+    private static Stage crearDialogCerrar() throws IOException {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = cargarScenaDialogoCerrar();
+        dialog.setScene(scene);
+        //Enventos del dialogo
+        dialog.setOnCloseRequest(windowEvent -> Platform.exit());
+        return dialog;
+    }
+
+    private static Scene cargarScenaDialogoCerrar() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("popup-cerrar.fxml"));
+        return new Scene(fxmlLoader.load(), 420, 206);
     }
 }
