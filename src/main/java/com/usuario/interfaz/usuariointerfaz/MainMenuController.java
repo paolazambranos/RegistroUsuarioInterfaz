@@ -1,12 +1,14 @@
 package com.usuario.interfaz.usuariointerfaz;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -40,6 +42,7 @@ public class MainMenuController {
         Scene scene = new Scene(fxmlLoader.load(), 420, 206);
         dialog.setScene(scene);
         dialog.show();
+        dialog.setOnCloseRequest(windowEvent -> Platform.exit());
     }
 
     public void cerrarApp(MouseEvent mouseEvent) {
