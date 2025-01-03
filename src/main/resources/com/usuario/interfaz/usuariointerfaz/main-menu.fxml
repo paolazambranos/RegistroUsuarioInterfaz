@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.usuario.interfaz.usuariointerfaz.MainMenuController"
+            prefHeight="400.0" prefWidth="600.0">
+
+        <Pane prefHeight="200.0" prefWidth="200.0">
+
+                <Label layoutX="136.0" layoutY="38.0" text="¡Bienvenido a la aplicacion de registro de usuario!">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Button fx:id="crearUsuarioButton" layoutX="221.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#crearUsuario" text="Crear un nuevo usuario" />
+                <Button fx:id="modificarDatoButton" layoutX="227.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#modificarDato" text="Modificar algun dato" />
+                <Button fx:id="mostrarUsuarioButton" layoutX="229.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#mostarUsuario" text="Mostrar los usuarios" />
+                <Button fx:id="eliminarUsuarioButton" layoutX="237.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#eliminarUsuario" text="Eliminar usuarios" />
+                <Button fx:id="salirUsuarioButton" layoutX="264.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#salirUsuario" text="Salir" />
+
+        </Pane>
+
+</TitledPane>
