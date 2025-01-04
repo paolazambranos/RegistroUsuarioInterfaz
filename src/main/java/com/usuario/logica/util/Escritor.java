@@ -19,7 +19,7 @@ public class Escritor {
 
     //Guarda los datos de los Usuarios en un JSON
     public boolean guardarUsuario(Usuario nuevoUsuario) throws UsuarioExistenteException {
-        boolean exito = false;
+        boolean exito;
         //Leer JSON actual
         Gson gson = new Gson ();
         List<Usuario> usuariosGuardados = obtenerUsuariosGuardados(gson);
@@ -57,7 +57,7 @@ public class Escritor {
 
     private static boolean verificarExistencia(Usuario nuevoUsuario, List<Usuario> usuariosGuardados) {
         boolean aptoParaGuardar = true;
-        if(usuariosGuardados != null && usuariosGuardados.size()>0) {
+        if(usuariosGuardados != null && !usuariosGuardados.isEmpty()) {
             for (Usuario usuarioGuardado : usuariosGuardados){
                 if (usuarioGuardado.getCorreo().equalsIgnoreCase(nuevoUsuario.getCorreo())) {
                     aptoParaGuardar = false;
@@ -69,7 +69,7 @@ public class Escritor {
     }
 
     private List<Usuario> obtenerUsuariosGuardados(Gson gson) {
-        List<Usuario> usuarios = null;
+        List<Usuario> usuarios;
         try (Reader reader = new FileReader(nombreArchivo)) {
             Type listUsuariosType = new TypeToken<List<Usuario>>(){}.getType ();
             usuarios = gson.fromJson (reader, listUsuariosType);
