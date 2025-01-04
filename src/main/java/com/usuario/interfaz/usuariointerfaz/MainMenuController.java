@@ -1,11 +1,8 @@
 package com.usuario.interfaz.usuariointerfaz;
 
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,26 +37,12 @@ public class MainMenuController {
      * @throws IOException
      */
     public void salirUsuario(MouseEvent mouseEvent) throws IOException {
-        final Stage dialog = crearDialogCerrar();
+        IPopupController iPopupController = new PopupController();
+        final Stage dialog = iPopupController.crearDialogCerrar();
         dialog.show();
     }
 
     public void cerrarApp(MouseEvent mouseEvent) {
         Platform.exit();
-    }
-
-    private static Stage crearDialogCerrar() throws IOException {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        Scene scene = cargarScenaDialogoCerrar();
-        dialog.setScene(scene);
-        //Enventos del dialogo
-        dialog.setOnCloseRequest(windowEvent -> Platform.exit());
-        return dialog;
-    }
-
-    private static Scene cargarScenaDialogoCerrar() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("popup-cerrar.fxml"));
-        return new Scene(fxmlLoader.load(), 420, 206);
     }
 }
