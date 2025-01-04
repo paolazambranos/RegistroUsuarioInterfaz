@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.usuario.interfaz.usuariointerfaz.UsuarioController">
+
+        <Pane prefHeight="200.0" prefWidth="200.0">
+
+                <Label layoutX="181.0" layoutY="14.0" text="¡Creacion de un nuevo usuario!">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+      <Label layoutX="214.0" layoutY="63.0" text="Ingrese los datos del usuario" />
+      <Label layoutX="55.0" layoutY="125.0" text="ALIAS:" />
+      <TextField layoutX="101.0" layoutY="121.0" />
+      <Label layoutX="58.0" layoutY="178.0" text="CORREO:" />
+      <TextField layoutX="134.0" layoutY="174.0" />
+      <Label fx:id="usuarioInvalidoLabel" layoutX="307.0" layoutY="126.0" text="Usuario invalido" textFill="#da0c0c" visible="false" />
+      <Label fx:id="correoInvalidoLabel" layoutX="307.0" layoutY="179.0" text="Correo invalido" textFill="#da3131" visible="false" />
+      <Button fx:id="ingresarUsuarioButton" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#ingresarUsuario" text="Ingresar" />
+      <Label layoutX="243.0" layoutY="306.0" text="Usuario creado con exito" textFill="#2184a4" visible="false" />
+      <Button fx:id="volverMenuButton" layoutX="480.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#volverMenu" text="Volver al menu" />
+
+        </Pane>
+
+</TitledPane>
