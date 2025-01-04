@@ -18,13 +18,13 @@
                 </Label>
       <Label layoutX="214.0" layoutY="63.0" text="Ingrese los datos del usuario" />
       <Label layoutX="55.0" layoutY="125.0" text="ALIAS:" />
-      <TextField layoutX="101.0" layoutY="121.0" />
+      <TextField fx:id="aliasTextField" layoutX="101.0" layoutY="121.0" />
       <Label layoutX="58.0" layoutY="178.0" text="CORREO:" />
-      <TextField layoutX="134.0" layoutY="174.0" />
+      <TextField fx:id="correoTextField" layoutX="134.0" layoutY="174.0" />
       <Label fx:id="usuarioInvalidoLabel" layoutX="307.0" layoutY="126.0" text="Usuario invalido" textFill="#da0c0c" visible="false" />
       <Label fx:id="correoInvalidoLabel" layoutX="307.0" layoutY="179.0" text="Correo invalido" textFill="#da3131" visible="false" />
       <Button fx:id="ingresarUsuarioButton" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#ingresarUsuario" text="Ingresar" />
-      <Label layoutX="243.0" layoutY="306.0" text="Usuario creado con exito" textFill="#2184a4" visible="false" />
+      <Label fx:id="mensajeResultado" layoutX="243.0" layoutY="306.0" text="Usuario creado con exito" textFill="#2184a4" visible="false" />
       <Button fx:id="volverMenuButton" layoutX="480.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#volverMenu" text="Volver al menu" />
 
         </Pane>

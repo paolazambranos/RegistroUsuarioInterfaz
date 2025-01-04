@@ -1,6 +1,10 @@
 package com.usuario.interfaz.usuariointerfaz;
 
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -8,14 +12,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuController {
+    private Stage stage;
+    private Scene scene;
     public Button crearUsuarioButton;
     public Button modificarDatoButton;
     public Button mostrarUsuarioButton;
     public Button eliminarUsuarioButton;
     public Button salirUsuarioButton;
 
-    public void crearUsuario(MouseEvent mouseEvent) {
-        System.out.println("Crear usuario click");
+    public void crearUsuario(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("crear-modificar-usuario.fxml"));
+        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void modificarDato(MouseEvent mouseEvent) {
