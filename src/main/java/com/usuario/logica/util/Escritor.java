@@ -2,15 +2,11 @@ package com.usuario.logica.util;
 
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.usuario.logica.excepciones.UsuarioExistenteException;
 import com.usuario.logica.modelo.Usuario;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +18,8 @@ public class Escritor {
         boolean exito;
         //Leer JSON actual
         Gson gson = new Gson ();
-        List<Usuario> usuariosGuardados = obtenerUsuariosGuardados(gson);
+        Lector lector = new Lector();
+        List<Usuario> usuariosGuardados = lector.obtenerUsuariosGuardados();
         //Verficar que no exista el usuario en el JSON actual
         boolean aptoParaGuardar = verificarExistencia(nuevoUsuario, usuariosGuardados);
 
@@ -68,15 +65,6 @@ public class Escritor {
         return aptoParaGuardar;
     }
 
-    private List<Usuario> obtenerUsuariosGuardados(Gson gson) {
-        List<Usuario> usuarios;
-        try (Reader reader = new FileReader(nombreArchivo)) {
-            Type listUsuariosType = new TypeToken<List<Usuario>>(){}.getType ();
-            usuarios = gson.fromJson (reader, listUsuariosType);
-        } catch (IOException e) {
-            throw new Error("Error reading JSON file");
-        }
-        return usuarios;
-    }
+
 
 }

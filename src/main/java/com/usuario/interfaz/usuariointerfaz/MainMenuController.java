@@ -11,12 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuController {
+    public Button modificarEliminarUsuarioButton;
     private Stage stage;
     private Scene scene;
     public Button crearUsuarioButton;
-    public Button modificarDatoButton;
     public Button mostrarUsuarioButton;
-    public Button eliminarUsuarioButton;
     public Button salirUsuarioButton;
 
     public void crearUsuario(MouseEvent mouseEvent) throws IOException {
@@ -27,16 +26,16 @@ public class MainMenuController {
         stage.show();
     }
 
-    public void modificarDato(MouseEvent mouseEvent) {
-        System.out.println("Modificar dato click");
+    public void modificarEliminarUsuario(MouseEvent mouseEvent) {
+
     }
 
-    public void mostarUsuario(MouseEvent mouseEvent) {
-        System.out.println("Mostrar usuario click");
-    }
-
-    public void eliminarUsuario(MouseEvent mouseEvent) {
-        System.out.println("Eliminar usuario click");
+    public void mostarUsuario(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("lista-usuarios.fxml"));
+        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
