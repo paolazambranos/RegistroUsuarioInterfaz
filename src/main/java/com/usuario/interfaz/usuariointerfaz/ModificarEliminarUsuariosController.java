@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -15,21 +16,23 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-public class ListaUsuariosController {
+public class ModificarEliminarUsuariosController {
 
 
-    public Button verDetallesUsuarioButton;
     public Button volverMenuButton;
     public ListView<String> listaUsuarios;
-    public Pane detallesPanel;
     public Button volverListaButton;
     public Pane listaPanel;
-    public Label aliasValor;
-    public Label correoValor;
-    public Label puntosTotalesValor;
-    public Label horasJugadasValor;
-    public Label palabrasTotalesValor;
+    public Button guardarButton;
+    public TextField aliasValor;
+    public TextField correoValor;
+    public Button eliminarUsuarioButton;
+    public Pane modificarPanel;
+    public Button modificarUsuarioButton;
     public Label mensajeError;
+    public Label mensajeUsuarioGuardado;
+    public Label usuarioInvalidoLabel;
+    public Label correoInvalidoLabel;
     private Stage stage;
     private Scene scene;
 
@@ -53,9 +56,12 @@ public class ListaUsuariosController {
         stage.show();
     }
 
-    public void verDetallesUsuario(MouseEvent mouseEvent) throws IOException {
+    public void modificarUsuario(MouseEvent mouseEvent) throws IOException {
         //Limpiar interfaz
         mensajeError.setVisible(false);
+        usuarioInvalidoLabel.setVisible(false);
+        correoInvalidoLabel.setVisible(false);
+        mensajeUsuarioGuardado.setVisible(false);
 
         //obteniendo usuario seleccionado
         usuarioSeleccionado = listaUsuarios.getSelectionModel().getSelectedItem();
@@ -66,11 +72,8 @@ public class ListaUsuariosController {
             if(usuarioEncontrado != null) {
                 aliasValor.setText(usuarioEncontrado.getAlias());
                 correoValor.setText(usuarioEncontrado.getCorreo());
-                puntosTotalesValor.setText(String.valueOf(usuarioEncontrado.getPuntosTotales()));
-                horasJugadasValor.setText(String.valueOf(usuarioEncontrado.getHorasJugadas()));
-                palabrasTotalesValor.setText(String.valueOf(usuarioEncontrado.getCantidadDePalabras()));
                 listaPanel.setVisible(false);
-                detallesPanel.setVisible(true);
+                modificarPanel.setVisible(true);
             }else{
                 mensajeError.setText("Usuario no encontrado");
                 mensajeError.setVisible(true);
@@ -100,8 +103,14 @@ public class ListaUsuariosController {
 
     public void volverLista(MouseEvent mouseEvent) {
         listaPanel.setVisible(true);
-        detallesPanel.setVisible(false);
+        modificarPanel.setVisible(false);
     }
 
+    public void guardarCambiosUsuario(MouseEvent mouseEvent) {
+        System.out.println("Guardar cambios usuarios");
+    }
 
+    public void eliminarUsuario(MouseEvent mouseEvent) {
+        System.out.println("Eliminar usuarios");
+    }
 }

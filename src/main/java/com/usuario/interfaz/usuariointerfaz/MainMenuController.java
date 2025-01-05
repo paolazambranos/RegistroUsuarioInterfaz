@@ -26,8 +26,12 @@ public class MainMenuController {
         stage.show();
     }
 
-    public void modificarEliminarUsuario(MouseEvent mouseEvent) {
-
+    public void modificarEliminarUsuario(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("modificar-eliminar-usuarios.fxml"));
+        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void mostarUsuario(MouseEvent mouseEvent) throws IOException {
