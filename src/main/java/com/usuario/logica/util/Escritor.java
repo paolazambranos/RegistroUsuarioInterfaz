@@ -17,7 +17,6 @@ public class Escritor {
     public boolean guardarUsuario(Usuario nuevoUsuario) throws UsuarioExistenteException {
         boolean exito;
         //Leer JSON actual
-        Gson gson = new Gson ();
         Lector lector = new Lector();
         List<Usuario> usuariosGuardados = lector.obtenerUsuariosGuardados();
         //Verficar que no exista el usuario en el JSON actual
@@ -25,8 +24,7 @@ public class Escritor {
 
         //Escribe lo datos en el JSON
         if(aptoParaGuardar) {
-
-            exito = guardarUsuarioEnArchivo(nuevoUsuario, usuariosGuardados, gson);
+            exito = guardarUsuario(nuevoUsuario, usuariosGuardados);
         }
         else {
             throw new UsuarioExistenteException();
@@ -34,15 +32,25 @@ public class Escritor {
         return exito;
     }
 
-    private boolean guardarUsuarioEnArchivo(Usuario nuevoUsuario, List<Usuario> usuariosGuardados, Gson gson) {
-        boolean exito = false;
+    public boolean actualizarUsuarios(List<Usuario> usuariosActualizar) throws UsuarioExistenteException {
+        return guardarUsuariosEnArchivo(usuariosActualizar);
+    }
+
+    private boolean guardarUsuario(Usuario nuevoUsuario, List<Usuario> usuariosGuardados) {
         //La primera vez no habran usuarios en el sistema y puede que la lista sea nula
         if(usuariosGuardados == null){
             usuariosGuardados = new ArrayList<>();
         }
         //Agregar usuario a la lista final
         usuariosGuardados.add(nuevoUsuario);
+        boolean exito = guardarUsuariosEnArchivo(usuariosGuardados);
+        return exito;
+    }
+
+    private boolean guardarUsuariosEnArchivo(List<Usuario> usuariosGuardados) {
+        boolean exito = false;
         try (FileWriter file = new FileWriter(nombreArchivo)) {
+            Gson gson = new Gson();
             file.write(gson.toJson(usuariosGuardados));
             System.out.println("Archivos gruardados con exito!");
             exito = true;
