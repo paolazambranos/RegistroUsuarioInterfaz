@@ -37,9 +37,11 @@ public class UsuarioController {
         String correo = correoTextField.getText();
 
         //Validar los campos correo
-        validarDatosDeEntrada(correo, alias);
 
-        guardarUsuario(alias, correo);
+        if(validarDatosDeEntrada(correo, alias)){
+            guardarUsuario(alias, correo);
+        }
+
 
     }
 
@@ -57,21 +59,25 @@ public class UsuarioController {
             mensajeResultado.setVisible(true);
         }
     }
-
-    private void validarDatosDeEntrada(String correo, String alias) {
+    //validar datos de entrada
+    private boolean validarDatosDeEntrada(String correo, String alias) {
+        boolean validar = false;
         try {
             Validar validarObj = new Validar();
             validarObj.validarCorreo(correo);
+            validar = true;
         } catch (FormatoInvalidoCorreoException e) {
             correoInvalidoLabel.setVisible(true);
         }
 
-        try{
+        try {
             Validar validarObj = new Validar();
             validarObj.validarUsuario(alias);
-        }catch (FormatoInvalidoAliasException e){
+        } catch (FormatoInvalidoAliasException e) {
             usuarioInvalidoLabel.setVisible(true);
         }
+
+        return validar;
     }
 
     private void limpiarInterfaz() {
