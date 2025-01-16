@@ -67,7 +67,7 @@ public class ListaUsuariosController {
                 aliasValor.setText(usuarioEncontrado.getAlias());
                 correoValor.setText(usuarioEncontrado.getCorreo());
                 puntosTotalesValor.setText(String.valueOf(usuarioEncontrado.getPuntosTotales()));
-                horasJugadasValor.setText(String.valueOf(usuarioEncontrado.getHorasJugadas()));
+                horasJugadasValor.setText(String.valueOf(usuarioEncontrado.getHorasJugadas()) + ":" + String.valueOf(usuarioEncontrado.getMinutosJugados()) + ":" + String.valueOf(usuarioEncontrado.getSegundosJugados()));
                 palabrasTotalesValor.setText(String.valueOf(usuarioEncontrado.getCantidadDePalabras()));
                 listaPanel.setVisible(false);
                 detallesPanel.setVisible(true);
