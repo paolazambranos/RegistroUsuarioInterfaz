@@ -15,6 +15,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ * Esta clase representa la lista de los usuarios,
+ * muestra los detalles de cada usuario como:
+ * EL alias
+ * El correo
+ * Los puntos totales
+ * Las horas jugadas
+ * Y las palabras que ha ingresado en el tablero
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ *
+ */
 public class ListaUsuariosController {
 
 
@@ -30,12 +44,20 @@ public class ListaUsuariosController {
     public Label horasJugadasValor;
     public Label palabrasTotalesValor;
     public Label mensajeError;
+    public Pane mainPane;
     private Stage stage;
     private Scene scene;
 
     private String usuarioSeleccionado;
     private List<Usuario> usuariosGuardados;
 
+    /**
+     *
+     * Este metodo carga una lista de usuarios mediante el objeto lector,
+     * recorre la lista y formatea cada usuario como:
+     * Alias-Correo y lo agrega a listaUsuarios
+     *
+     */
     public void initialize() {
         Lector lector = new Lector();
         usuariosGuardados = lector.obtenerUsuariosGuardados();
@@ -45,6 +67,14 @@ public class ListaUsuariosController {
 
     }
 
+    /**
+     *
+     * Esta metodo cambia la escena actual de la
+     * aplicacion por la escena del menu principal
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar el archivo main-menu.fxml
+     */
     public void volverMenu(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("main-menu.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -53,6 +83,15 @@ public class ListaUsuariosController {
         stage.show();
     }
 
+    /**
+     *
+     * Este metodo muestra los detalles del usuario seleccionado,
+     * actualiza los datos del usuario o mensajes de error
+     * si no se encuentra o no se ha seleccionado un usuario
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar los datos
+     */
     public void verDetallesUsuario(MouseEvent mouseEvent) throws IOException {
         //Limpiar interfaz
         mensajeError.setVisible(false);
@@ -86,6 +125,14 @@ public class ListaUsuariosController {
 
     }
 
+    /**
+     *
+     * Este metodo busca en la lista de usuarios guardados
+     * un usuario en especifico cuyo correo coincida con el
+     * correo del usuario seleccionado
+     *
+     * @return devuleve el usuario encontrado o null si no lo encuentra
+     */
     private Usuario getUsuarioEnUsuariosGuardados() {
         String[] dataUsuario = usuarioSeleccionado.split(" - ");
         Usuario usuarioEncontrado = null;
@@ -98,6 +145,13 @@ public class ListaUsuariosController {
         return usuarioEncontrado;
     }
 
+    /**
+     *
+     * Este metodo devuelve la escena donde muestra
+     * la lista de usuarios
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void volverLista(MouseEvent mouseEvent) {
         listaPanel.setVisible(true);
         detallesPanel.setVisible(false);

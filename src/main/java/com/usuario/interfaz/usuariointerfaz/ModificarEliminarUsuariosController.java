@@ -22,6 +22,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * Esta clase representa la opcion de
+ * modificar-eliminar usuarios
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ */
 public class ModificarEliminarUsuariosController {
 
 
@@ -46,6 +54,14 @@ public class ModificarEliminarUsuariosController {
     private Usuario usuarioEncontrado;
     private List<Usuario> usuariosGuardados;
 
+    /**
+     *
+     * Este metodo carga los usuarios guardados en una variable
+     * desde una fuente externa usando la clase lector,
+     * llama a cargarlistaUsuarios para mostrarlos
+     * en la interfaz grafica
+     *
+     */
     public void initialize() {
         Lector lector = new Lector();
         usuariosGuardados = lector.obtenerUsuariosGuardados();
@@ -53,6 +69,12 @@ public class ModificarEliminarUsuariosController {
 
     }
 
+    /**
+     * Este metodo actualiza el contenido de la interfaz grafica
+     * con informacion  extraida de la lista de usuarios
+     *
+     * @param usuarios contiene los datos que se mostrara en la interfaz garfica
+     */
     private void cargarListaUsuarios(List<Usuario> usuarios) {
         listaUsuarios.getItems().setAll(new ArrayList<>());
         for(Usuario usuario: usuarios){
@@ -60,6 +82,13 @@ public class ModificarEliminarUsuariosController {
         }
     }
 
+    /**
+     * Este metodo levantara la escena principal
+     * que es el menu de opciones de la aplicacion
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar la escena main-menu-fxml
+     */
     public void volverMenu(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("main-menu.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -68,6 +97,15 @@ public class ModificarEliminarUsuariosController {
         stage.show();
     }
 
+    /**
+     * Este metodo prepara la interfaz grafica  para modificar los datos
+     * de un usuario seleccionado, este verifica que se haya
+     * seleccionado un usuario valido, obtiene la informacion
+     * y la muestra con los datos cargados para ser modificados
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si se encuentran fallos en la operacion de entrada/salida
+     */
     public void modificarUsuario(MouseEvent mouseEvent) throws IOException {
         //Limpiar interfaz
         mensajeError.setVisible(false);
@@ -101,6 +139,13 @@ public class ModificarEliminarUsuariosController {
 
     }
 
+    /**
+     * Este metodo tiene como objetivo encontrar un usuario
+     * especifico usando su correo como identificador unico
+     *
+     * @param usuarioSeleccionado recibe una cadena con el formaro Alias-Correo
+     * @return devuelve un usuario encontrado o null si no lo encuentra
+     */
     private Usuario getUsuarioEnUsuariosGuardados(String usuarioSeleccionado) {
         String[] dataUsuario = usuarioSeleccionado.split(" - ");
         Usuario usuarioEnc = null;
@@ -113,11 +158,23 @@ public class ModificarEliminarUsuariosController {
         return usuarioEnc;
     }
 
+    /**
+     * Este metodo devuelve la escena de la lista donde
+     * se muestran todos los usuarios registrados
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void volverLista(MouseEvent mouseEvent) {
         listaPanel.setVisible(true);
         modificarPanel.setVisible(false);
     }
 
+    /**
+     * Este metodo guarda los cambios realizados a un usuario
+     * en la interfaz grafica  y a su vez en la lista de usuarios
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void guardarCambiosUsuario(MouseEvent mouseEvent) {
         //limpiarInterfaz
         mensajeResultado.setVisible(false);
@@ -133,6 +190,13 @@ public class ModificarEliminarUsuariosController {
 
     }
 
+    /**
+     * Este metodo actualiza los datos de un usuario
+     * asegurando que no hayan correos duplicados
+     *
+     * @param aliasNuevo el nuevo alias que se asignara al usuario
+     * @param correoNuevo el nuevo correo que se asignara al usuario
+     */
     private void actualizarUsuario(String aliasNuevo, String correoNuevo) {
         //Actualizar usuario en lista
         for(Usuario usuarioGuardado: usuariosGuardados){
@@ -155,6 +219,14 @@ public class ModificarEliminarUsuariosController {
         }
     }
 
+    /**
+     *
+     * Este metodo asegura que el nuevo correo y alias
+     * ingresados cumplan con los requisitos para ser validos
+     *
+     * @param correo el orreo que el usuario desea validar
+     * @param alias el alias que el usuario desea validar
+     */
     private void validarDatosDeEntrada(String correo, String alias) {
         try {
             Validar validarObj = new Validar();
@@ -171,6 +243,13 @@ public class ModificarEliminarUsuariosController {
         }
     }
 
+    /**
+     * Este metodo permite eliminar un usuario seleccionado
+     * de la lista, lo elimina tanto en la interfaz grafica
+     * como en el archivo
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void eliminarUsuario(MouseEvent mouseEvent) {
         //limpiar interfaz
         mensajeError.setVisible(false);
@@ -207,6 +286,13 @@ public class ModificarEliminarUsuariosController {
         }
     }
 
+    /**
+     * Este metodo garantiza que las eliminaciones de usuarios
+     * se realicen de manera segura y eificiente
+     *
+     * @param usuarioEliminar usuario que desea eliminar
+     * @return devuelve verdadero si el usuario se encontro y se elimino, falso si el usuario no se encontro
+     */
     private boolean eliminiarUsuarioDeLista(Usuario usuarioEliminar) {
         boolean exito = false;
         boolean encontrado = false;

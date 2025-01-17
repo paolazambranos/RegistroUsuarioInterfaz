@@ -11,10 +11,23 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ *
+ * Esta clase tiene como proposito
+ * leer los archivos JSON
+ *
+ * @author Paola zambrano
+ * @version 1.0
+ */
 public class Lector {
     //Se encarga de leer el JSON
 
-
+    /**
+     * Este metodo se encarga de leer un archivo
+     * JSON que contiene una lista de usuarios
+     *
+     * @return devuelve una lista de objetos tipo Usuario que son los datos leidos desde el JSON
+     */
     public List<Usuario> obtenerUsuariosGuardados() {
         List<Usuario> usuarios;
         File file = new File("../archivoRegistro.json");

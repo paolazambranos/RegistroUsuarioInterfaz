@@ -10,6 +10,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Esta clase se encarga de las escenas
+ * de cada opcion del menu principal
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ */
 public class MainMenuController {
     public Button modificarEliminarUsuarioButton;
     private Stage stage;
@@ -18,14 +25,31 @@ public class MainMenuController {
     public Button mostrarUsuarioButton;
     public Button salirUsuarioButton;
 
+    /**
+     * Este metodo se encarga de levantar y mostrar la escena
+     * de crear usuario
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar la escena crear-modificar-usuario.fxml
+     */
     public void crearUsuario(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("crear-modificar-usuario.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
+
+
     }
 
+    /**
+     *
+     * Este metodo se encarga de levantar y mostrar la escena
+     * de modificar-eliminar usuario
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar la escena modificar-eliminar-usuarios.fxml
+     */
     public void modificarEliminarUsuario(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("modificar-eliminar-usuarios.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -33,7 +57,15 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     *
+     * Este metodo se encarga de levantar y
+     * mostrar la escena de mostrar usuario
+     *
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar la escena lista-usuarios.fxml
+     */
     public void mostarUsuario(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("lista-usuarios.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -43,10 +75,11 @@ public class MainMenuController {
     }
 
     /**
-     * Este evento mostrara un dialogo que informa
+     * Este metodo se encarga de mostrar un dialogo que informa
      * al usuario que los datos han sido guardados y se despide
-     * @param mouseEvent
-     * @throws IOException
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar la escena
      */
     public void salirUsuario(MouseEvent mouseEvent) throws IOException {
         IPopupController iPopupController = new PopupController();
@@ -54,6 +87,11 @@ public class MainMenuController {
         dialog.show();
     }
 
+    /**
+     * Este metodo cierra la ventana total de la aplicacion
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void cerrarApp(MouseEvent mouseEvent) {
         Platform.exit();
     }

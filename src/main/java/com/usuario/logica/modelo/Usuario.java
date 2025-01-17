@@ -1,5 +1,14 @@
 package com.usuario.logica.modelo;
 
+/**
+
+ * Esta clase representa al usuario en la aplicacion
+ * de registro, almacena informacion sobre el usuario,
+ * como el alias, correo y estadisticas del juego
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ */
 public class Usuario{
     private String alias;
     private String correo;
@@ -10,6 +19,14 @@ public class Usuario{
     private int cantidadDePalabras;
     //private LinkedList<DatosDePartidas> listaDePartidas;
 
+    /**
+     *
+     * Este metodo es el constructor de la clase Usuario
+     *
+     *
+     * @param alias apodo del usuario
+     * @param correo direccion de correo electronico del usuario
+     */
     public Usuario(String alias, String correo) {
         this.alias = alias;
         this.correo = correo;
@@ -21,6 +38,19 @@ public class Usuario{
         //this.listaDePartidas = new LinkedList<DatosDePartidas>();
     }
 
+    /**
+     * Este metodo es un constructor de la clase
+     * Usuario que crea una instancia de Usuario
+     * inicializando todos sus atributos
+     *
+     * @param alias apodo del usuario
+     * @param correo direccion del correo electronico del usuario
+     * @param puntosTotales numero total de puntos acumulados
+     * @param minutosJugados cantidad de minutos totales jugadas
+     * @param horasJugadas cantidad de horas totales jugadas
+     * @param segundosJugados cantidad de segundos totales jugadas
+     * @param cantidadDePalabras numero total de palabras asociadas
+     */
     public Usuario(String alias, String correo, int puntosTotales, int minutosJugados, int horasJugadas, int segundosJugados, int cantidadDePalabras) {
         this.alias = alias;
         this.correo = correo;
@@ -90,7 +120,12 @@ public class Usuario{
         this.cantidadDePalabras = cantidadDePalabras;
     }
 
-
+    /**
+     * Este metodo llama al metodo toString()
+     * de ese objeto para convertir una cadena
+     *
+     * @return una representacion de la cadena
+     */
     @Override
     public String toString() {
         return "Usuario{" +

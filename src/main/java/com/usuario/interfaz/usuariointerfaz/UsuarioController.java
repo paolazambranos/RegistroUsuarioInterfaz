@@ -17,6 +17,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ *
+ * Esta clase se encarga de recibir y validar los
+ * datos ingresados por los usuarios y gestionar
+ * el registro de nuevos usuarios
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ *
+ */
 public class UsuarioController {
     public TextField aliasTextField;
     public TextField correoTextField;
@@ -29,6 +39,13 @@ public class UsuarioController {
     private Stage stage;
     private Scene scene;
 
+    /**
+     * Este metodo se encarga de obetenr los datos
+     * como alias y correo, si son validos procede
+     * a registrarlos en el sistema
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     */
     public void ingresarUsuario(MouseEvent mouseEvent) {
         limpiarInterfaz();
 
@@ -45,6 +62,14 @@ public class UsuarioController {
 
     }
 
+    /**
+     * Este metodo conecta la logica con la interfaz grafica
+     * al intentar registrar un nuevo usuario, valida si se
+     * ha guardado con exito o no
+     *
+     * @param alias es el alias ingresado por el usuario
+     * @param correo es el correo ingresado por el usuario
+     */
     private void guardarUsuario(String alias, String correo) {
         Usuario usuario = new Usuario(alias, correo);
         Escritor escritor = new Escritor();
@@ -59,7 +84,17 @@ public class UsuarioController {
             mensajeResultado.setVisible(true);
         }
     }
-    //validar datos de entrada
+//validar datos de entradas
+
+    /**
+     * Este metodo valida los datos ingresados por
+     * el usuario, asegurando de que sean correctos
+     *
+     * @param correo es el correo ingresado por el usuario
+     * @param alias es el alias ingresado por el usuario
+     * @return devuelve verdadero si el correo es valido
+     *
+     */
     private boolean validarDatosDeEntrada(String correo, String alias) {
         boolean validar = false;
         try {
@@ -80,12 +115,24 @@ public class UsuarioController {
         return validar;
     }
 
+    /**
+     * Este metodo restablece el estado de la
+     * interfaz grafica a su estado inicial al
+     * ocultar cualquier mensaje
+     */
     private void limpiarInterfaz() {
         correoInvalidoLabel.setVisible(false);
         usuarioInvalidoLabel.setVisible(false);
         mensajeResultado.setVisible(false);
     }
 
+    /**
+     * Esta metodo cambia la escena actual de la
+     * aplicacion por la escena del menu principal
+     *
+     * @param mouseEvent interactua con el raton, hace funciones como clic
+     * @throws IOException lanza una excepcion si hay problema al cargar el archivo main-menu.fxml
+     */
     public void volverMenu(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("main-menu.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();

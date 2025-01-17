@@ -7,6 +7,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ *
+ * Esta clase levanta la escena principal,
+ * es decir, el menu principal de la
+ * aplicacion de registro de usuario
+ *
+ * @author Paola Zambrano
+ * @version 1.0
+ */
 public class MainMenuApplication  extends Application {
     @Override
     public void start(Stage stage) throws IOException {
