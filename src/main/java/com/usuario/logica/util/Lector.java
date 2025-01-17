@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.usuario.logica.modelo.Usuario;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -11,10 +12,13 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class Lector {
-    String nombreArchivo = "archivoRegistro.json";
     //Se encarga de leer el JSON
-   public List<Usuario> obtenerUsuariosGuardados() {
+
+
+    public List<Usuario> obtenerUsuariosGuardados() {
         List<Usuario> usuarios;
+        File file = new File("../archivoRegistro.json");
+        String nombreArchivo = file.getAbsolutePath();
         try (Reader reader = new FileReader(nombreArchivo)) {
             Gson gson = new Gson();
             Type listUsuariosType = new TypeToken<List<Usuario>>(){}.getType ();

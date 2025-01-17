@@ -5,13 +5,15 @@ import com.google.gson.Gson;
 import com.usuario.logica.excepciones.UsuarioExistenteException;
 import com.usuario.logica.modelo.Usuario;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Escritor {
-    String nombreArchivo = "archivoRegistro.json";
+    File file = new File("../archivoRegistro.json");
+    String nombreArchivo = file.getAbsolutePath();
 
     //Guarda los datos de los Usuarios en un JSON
     public boolean guardarUsuario(Usuario nuevoUsuario) throws UsuarioExistenteException {
